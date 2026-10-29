@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Search</title>
+</head>
+<body>
+
+<h2>Product Search</h2>
+
+<input id="search" placeholder="Search product">
+
+<div id="result"></div>
+
+<script>
+let products = [
+    {name: "T-Shirt", price: 500},
+    {name: "Shoes", price: 2500}
+];
+
+function show() {
+    let s = document.getElementById("search").value.toLowerCase();
+
+    document.getElementById("result").innerHTML = "";
+
+    products.forEach(p => {
+        if (p.name.toLowerCase().includes(s)) {
+            document.getElementById("result").innerHTML +=
+                `<h3>${p.name}</h3><p>Price: ₹${p.price}</p>`;
+        }
+    });
+}
+
+document.getElementById("search").addEventListener("input", show);
+show();
+</script>
+
+</body>
+</html>
