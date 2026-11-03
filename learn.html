@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+
+    <h2>My To-Do List</h2>
+
+    <input id="search" placeholder="Enter a task">
+    <button id="addBtn">Add Task</button>
+
+    <div id="result"></div>
+
+    <script>
+        let tasks = [];
+
+        function show() {
+            let resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                resultDiv.innerHTML += `
+                    <p>
+                        ${task} 
+                        <button onclick="deleteTask(${index})">Delete</button>
+                    </p>
+                `;
+            });
+        }
+
+        function addTask() {
+            let input = document.getElementById("search");
+            let taskText = input.value.trim();
+
+            if (taskText !== "") {
+                tasks.push(taskText);
+                input.value = "";
+                show();
+            }
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            show();
+        }
+
+      
+        document.getElementById("addBtn").addEventListener("click", addTask);
+
+       
+        document.getElementById("search").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+
+      
+        show();
+    </script>
+
+</body>
+</html>
